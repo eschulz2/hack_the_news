@@ -13,6 +13,7 @@ get '/user/:id' do
   erb :user
 end
 
+
 get '/post/:id/comments' do
    @post=Post.find(params[:id])
    @comments =@post.comments
@@ -33,6 +34,21 @@ get '/comments' do
   @comments = Comment.all.order("created_at desc").limit(10)
   erb :all_comments
 end
+
+get '/signup' do
+  if session[:id]
+    redirect ("/user/#{session[:id]}")
+  end
+  erb :signup
+end  
+
+get '/logout' do
+  session.clear
+  redirect '/'
+end
+
+
+#=============================================
 
 
 post '/login' do 
@@ -63,4 +79,15 @@ post '/comment' do
   comment.save
   redirect "/post/#{params[:comment][:post_id]}/comments"
 
+end
+
+post '/signup' do
+
+    @user = User.new(params[:user])
+    @user.password = params[:password]
+    @user.password_confirmation = params[:password_confirmation]
+    @user.save!
+    session[:id] = @user.id
+
+    redirect "/user/#{@user.id}"
 end

@@ -25,12 +25,13 @@
       <% if session[:id] %>
         <li><a href="/user/<%=session[:id] %>"><%= User.find(session[:id]).name %></li>
         <li><a href="/submit">Submit</a></li>
+        <li><a href="/logout">Logout</a></li>
       <% else %>
         <form action="/login" method="POST">
-          <label for="email">Email
-          <input id="email" type="text" name="email"></label>
-          <label for="password">Password
-          <input id="password" type="password" name="password"></label>
+          <label for="login_email">Email
+          <input id="login_email" type="text" name="email"></label>
+          <label for="login_password">Password
+          <input id="login_password" type="password" name="password"></label>
           <input type="submit" value="Login">
         </form>
         <li><a href="/signup">Signup</a></li>
