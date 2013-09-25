@@ -1,6 +1,11 @@
+require 'bcrypt'
+
 class User < ActiveRecord::Base
   # Remember to create a migration!
-  require 'bcrypt'
+
+  include BCrypt
+  
+  has_secure_password
 
   def password
     @password ||= Password.new(password_digest)
@@ -13,7 +18,6 @@ class User < ActiveRecord::Base
 
 
 
-  has_secure_password
 
   has_many :posts
   has_many :comments
