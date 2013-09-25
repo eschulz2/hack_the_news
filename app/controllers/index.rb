@@ -13,6 +13,25 @@ get '/user/:id' do
   erb :user
 end
 
+get '/post/:post_id/vote' do
+
+  if session[:id]
+    begin
+      new_vote = PostVote.new
+      new_vote.user_id = session[:id]
+      new_vote.post_id = params[:post_id]
+      new_vote.save
+      redirect '/'
+    rescue
+      puts "That user has already voted on that post!"
+      redirect '/'
+    end
+
+  else
+    redirect '/'
+  end
+end
+
 
 get '/post/:id/comments' do
    @post=Post.find(params[:id])
@@ -60,7 +79,6 @@ post '/login' do
     else
       redirect "/"
     end
-
 end
 
 
@@ -91,3 +109,6 @@ post '/signup' do
 
     redirect "/user/#{@user.id}"
 end
+
+
+

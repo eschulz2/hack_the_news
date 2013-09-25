@@ -3,12 +3,12 @@
     <% @posts.each do |post| %>
       <tr>
         <td></td>
-        <td>^</td>
+        <td><% if session[:id] %><a href="/post/<%= post.id %>/vote"><img src="https://news.ycombinator.com/grayarrow.gif"></a><% end %></td>
         <td><a href="<%= post.url %>"><%= post.title%></a><span><%=post.url%></span></td>
       </tr>
       <tr>
         <td colspan="2"></td>
-        <td><span>Score</span><a href="user/<%= post.user_id%>"><%= post.user.name%></a><a href="post/<%=post.id%>/comments">Comments</a></td>
+        <td><span>Score: <%= post.post_votes.count %></span><a href="user/<%= post.user_id%>"><%= post.user.name%></a><a href="post/<%=post.id%>/comments">Comments</a></td>
       </tr>
       <tr height="5px"></tr>
     <% end %> 

@@ -4,6 +4,6 @@ class CreateCommentVotes < ActiveRecord::Migration
       t.belongs_to :user
       t.belongs_to :comment
     end
-    add_index :comment_votes, :user, unique: true
+    add_index :comment_votes, [:comment_id, :user_id], unique: true
   end
 end

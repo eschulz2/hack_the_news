@@ -4,6 +4,6 @@ class CreatePostVotes < ActiveRecord::Migration
       t.belongs_to :user
       t.belongs_to :post
     end
-    add_index :post_votes, :user, unique: true
+    add_index :post_votes, [:post_id, :user_id], unique: true
   end
 end
