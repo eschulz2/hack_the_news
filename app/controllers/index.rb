@@ -21,12 +21,14 @@ get '/post/:post_id/vote' do
       new_vote.user_id = session[:id]
       new_vote.post_id = params[:post_id]
       new_vote.save
-      redirect '/'
     rescue
       puts "That user has already voted on that post!"
-      redirect '/'
     end
+  end
 
+  if request.xhr?
+    content_type :json
+    { vote_count: Post.find(params[:post_id]).post_votes.count, post_id: params[:post_id] }.to_json
   else
     redirect '/'
   end

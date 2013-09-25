@@ -12,4 +12,17 @@ $(document).ready(function() {
     }
   });
 
+  $(".post_vote").on('click', function(event) {
+    event.preventDefault();
+
+    var url = $(this).attr('href');
+    console.log(url);
+    $.get(url,function(response){
+      console.log(response);
+
+      $("#post_id_"+response.post_id).text("Score: "+response.vote_count);
+      
+    });
+  });
+
 });
