@@ -1,0 +1,7 @@
+<div class="container">
+  <h2><%= @user.name %> </h2>
+  <p>Email: <%= @user.email %></p>
+  <p>Number of posts: <%= @user.posts.count %></p>
+  <p>Number of comments: <a href="/user/<%= @user.id%>/comments"><%= @user.comments.count %></p>
+
+</div>

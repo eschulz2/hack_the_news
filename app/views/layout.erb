@@ -22,7 +22,18 @@
     <ul class="nav">
       <li>Hacker News</li>
       <li>Comments</li>
-      <li>login</li>
+      <% if session[:id] %>
+        <li><a href="/user/<%=session[:id] %>"><%= User.find(session[:id]).name %></li>
+        <li><a href="/submit">Submit</a></li>
+      <% else %>
+        <form action="/login" method="POST">
+          <label for="email">Email
+          <input id="email" type="text" name="email"></label>
+          <label for="password">Password
+          <input id="password" type="password" name="password"></label>
+          <input type="submit" value="Login">
+        </form>
+      <% end %>
     </ul>
   </div>
   <%= yield %>

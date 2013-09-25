@@ -1,0 +1,8 @@
+<div class="container">
+  <dl>
+    <% @comments.each do |c|%>
+    <dt><a href="/user/<%=c.user.id %>"><%=c.user.name%></a></dt>
+      <dd><%=c.body%></dd>
+      <%end%>
+  </dl>  
+</div> 

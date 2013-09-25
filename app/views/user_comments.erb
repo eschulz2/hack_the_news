@@ -1,0 +1,9 @@
+<div class="container">
+  <h1><%= @user.name%>'s rantings </h1>
+  <dl>
+    <% @comments.each do |c|%>
+    <dt><a href="<%=c.post.url%>"><%=c.post.title%></a></dt>
+      <dd><%=c.body%></dd>
+      <%end%>
+  </dl>  
+</div> 
