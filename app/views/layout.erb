@@ -20,8 +20,8 @@
 <body>
   <div class="header">
     <ul class="nav">
-      <li>Hacker News</li>
-      <li>Comments</li>
+      <li><a href="/">Hacker News</a></li>
+      <li><a href="/comments">Comments</a></li>
       <% if session[:id] %>
         <li><a href="/user/<%=session[:id] %>"><%= User.find(session[:id]).name %></li>
         <li><a href="/submit">Submit</a></li>
@@ -33,6 +33,7 @@
           <input id="password" type="password" name="password"></label>
           <input type="submit" value="Login">
         </form>
+        <li><a href="/signup">Signup</a></li>
       <% end %>
     </ul>
   </div>

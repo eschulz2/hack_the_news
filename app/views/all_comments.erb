@@ -1,0 +1,10 @@
+<div class="container">
+  <dl>
+    <% @comments.each do |c|%>
+    <dt><a href="/user/<%=c.user.id %>"><%=c.user.name%></a></dt>
+      <dd><a href="<%= c.post.url %>"><%= c.post.title %></a></dd>
+      <dd><a href="/post/<%= c.post.id %>/comments">Other Comments</a></dd>
+      <dd><%=c.body%></dd>
+      <%end%>
+  </dl>  
+</div> 

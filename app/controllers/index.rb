@@ -14,7 +14,8 @@ get '/user/:id' do
 end
 
 get '/post/:id/comments' do
-   @comments =Post.find(params[:id]).comments
+   @post=Post.find(params[:id])
+   @comments =@post.comments
   erb :comments
 end  
 
@@ -26,6 +27,11 @@ end
 
 get '/submit' do
   erb :submit
+end
+
+get '/comments' do
+  @comments = Comment.all.order("created_at desc").limit(10)
+  erb :all_comments
 end
 
 
@@ -48,5 +54,13 @@ post '/submit' do
   post.save
 
   redirect ("/post/#{post.id}/comments")
+
+end
+
+post '/comment' do
+  comment=Comment.new(params[:comment])
+  comment.user_id = session[:id]
+  comment.save
+  redirect "/post/#{params[:comment][:post_id]}/comments"
 
 end

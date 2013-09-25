@@ -1,4 +1,10 @@
 <div class="container">
+  <form action="/comment" method="POST">
+    <input type="hidden" value="<%= @post.id%>" name="comment[post_id]">
+    <label for="comment">Comment:
+    <textarea id="comment" type="text" name="comment[body]"></textarea></label>
+    <input type="submit" value="Submit Comment">
+  </form>
   <dl>
     <% @comments.each do |c|%>
     <dt><a href="/user/<%=c.user.id %>"><%=c.user.name%></a></dt>
