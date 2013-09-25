@@ -4,7 +4,7 @@
     <dt><a href="/user/<%=c.user.id %>"><%=c.user.name%></a></dt>
       <dd><a href="<%= c.post.url %>"><%= c.post.title %></a></dd>
       <dd><a href="/post/<%= c.post.id %>/comments">Other Comments</a></dd>
-      <dd><%=c.body%></dd>
+      <dd><% if session[:id] %><a class="comment_vote" href="/c/<%= c.id %>/vote"><img src="https://news.ycombinator.com/grayarrow.gif"></a><% end %><%=c.body%></dd>
       <%end%>
   </dl>  
 </div> 
